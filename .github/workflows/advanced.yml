@@ -31,4 +31,6 @@ jobs:
           ./Test-Collation -ExpectedCollation Latin1_General_BIN -UserName sa -Password c0MplicatedP@ssword
 
       - name: Run sqlcmd to test localdb
-        run: sqlcmd -S "(localdb)\MSSQLLocalDB" -U sa -P c0MplicatedP@ssword -d master -Q "SELECT @@version;"
+        run: |
+          sqllocaldb start
+          sqlcmd -S "(localdb)\MSSQLLocalDB" -U sa -P c0MplicatedP@ssword -d master -Q "SELECT @@version;"
